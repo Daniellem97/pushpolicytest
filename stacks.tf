@@ -3,7 +3,7 @@
 ############################################
 resource "spacelift_policy" "default_push_policy" {
   name        = "default push policy"
-  policy_type = "push"
+  policy_type = "GIT_PUSH"
   body        = file("${path.module}/policies/default-push-policy.rego")
 }
 
@@ -34,12 +34,12 @@ resource "spacelift_stack" "stack_b" {
 ############################################
 # 4.  Manual policy attachments
 ############################################
-resource "spacelift_stack_policy_attachment" "stack_a_push" {
+resource "spacelift_policy_attachment" "stack_a_push" {
   stack_id  = spacelift_stack.stack_a.id
   policy_id = spacelift_policy.default_push_policy.id
 }
 
-resource "spacelift_stack_policy_attachment" "stack_b_push" {
+resource "spacelift_policy_attachment" "stack_b_push" {
   stack_id  = spacelift_stack.stack_b.id
   policy_id = spacelift_policy.default_push_policy.id
 }
