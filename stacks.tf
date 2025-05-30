@@ -3,7 +3,7 @@
 ############################################
 resource "spacelift_policy" "default_push_policy" {
   name        = "default push policy"
-  policy_type = "GIT_PUSH"
+  type = "GIT_PUSH"
   body        = file("${path.module}/policies/default-push-policy.rego")
 }
 
