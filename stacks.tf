@@ -1,8 +1,8 @@
 ############################################
 # 1.  Push policy definition
 ############################################
-resource "spacelift_policy" "default_push_policy" {
-  name        = "default push policy"
+resource "spacelift_policy" "default_push_policy_testing" {
+  name        = "default push policy_testing"
   type = "GIT_PUSH"
   body        = file("${path.module}/policies/default-push-policy.rego")
 }
@@ -36,10 +36,10 @@ resource "spacelift_stack" "stack_b" {
 ############################################
 resource "spacelift_policy_attachment" "stack_a_push" {
   stack_id  = spacelift_stack.stack_a.id
-  policy_id = spacelift_policy.default_push_policy.id
+  policy_id = spacelift_policy.default_push_policy_testing.id
 }
 
 resource "spacelift_policy_attachment" "stack_b_push" {
   stack_id  = spacelift_stack.stack_b.id
-  policy_id = spacelift_policy.default_push_policy.id
+  policy_id = spacelift_policy.default_push_policy_testing.id
 }
